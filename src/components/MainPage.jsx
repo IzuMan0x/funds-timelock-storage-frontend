@@ -116,6 +116,25 @@ export default function MainPage() {
     "Time until the next deposit window is: ";
   const descriptionTimeUntilWithdrawWindow =
     "Time until the next withdraw window is: ";
+  //Keeping these here just in case we need to add them back
+  /* 
+    
+    <button
+          className="rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 p-3 disabled:opacity-70 disabled:cursor-not-allowed hover:animate-pulse m-1"
+          disabled={!isConnected}
+          onClick={() => withdrawFunds?.()}
+        >
+          withdraw
+        </button>
+
+        <button
+          className="rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 p-3 disabled:opacity-70 disabled:cursor-not-allowed hover:animate-pulse m-1"
+          disabled={!isConnected}
+          onClick={() => depositFunds?.()}
+        >
+          {depositButton()}
+        </button>
+    */
 
   return (
     <>
@@ -140,61 +159,14 @@ export default function MainPage() {
           : "Wallet not connected"}
       </h1>
       <div className="flex justify-center">
-        <button
+        <a
           className="rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 p-3 disabled:opacity-70 disabled:cursor-not-allowed hover:animate-pulse m-1"
-          disabled={!isConnected}
-          onClick={() => withdrawFunds?.()}
+          href="https://sepolia.etherscan.io/address/0x3E62ED213B21dd47C4A8Fdf1f3B193fe2D4EeC6e"
+          target="_blank"
         >
-          withdraw
-        </button>
-
-        <button
-          className="rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 p-3 disabled:opacity-70 disabled:cursor-not-allowed hover:animate-pulse m-1"
-          disabled={!isConnected}
-          onClick={() => depositFunds?.()}
-        >
-          {depositButton()}
-        </button>
+          Contract on Etherscan
+        </a>
       </div>
-      <p className="p-2">
-        <span className="font-bold">
-          1- Elegir la entidad financiera o gestora con la que se quiere
-          contratar el plan.
-        </span>
-        <br />
-        Las más conocidas son bancos, aseguradoras y algunas gestoras
-        independientes. Implementar contratos inteligentes en la elección
-        inicial de la entidad gestora aún no sería viable hoy por varias
-        razones: Las gestoras no operan en blockchains compatibles, no existe un
-        marco legal y regulatorio que lo permita, el usuario promedio no tiene
-        la capacidad técnica para interactuar con contratos inteligentes, y los
-        planes de pensiones siguen siendo "off-chain". Se necesitan gestoras en
-        blockchains adecuadas, marcos legales actualizados, interfaces amigables
-        para usuarios, y planes de pensiones nativos en blockchain, para poder
-        llegar a elegir un plan directamente mediante un contrato inteligente.
-        Todavía faltan pasos por recorrer antes de llegar a ese punto.
-        <br />
-        <span className="font-bold">
-          2- Analizar las diferentes opciones de planes disponibles en esa
-          entidad y seleccionar el que más se ajuste al perfil y objetivos del
-          inversor.
-        </span>
-        <br />
-        Cada plan tiene distintas características. En la etapa de análisis y
-        selección del plan de pensiones individual sí podemos incorporar un
-        contrato inteligente: Colocaremos los planes de pensiones estructurados
-        en el contrato inteligente El contrato inteligente sería el código que
-        define las reglas y condiciones del plan de pensiones, en lugar de un
-        documento legal tradicional. Este código se incorporaría en una
-        blockchain de esta manera los inversores pueden interactuar con él
-        mediante transacciones. Una vez hecho el código, el contrato inteligente
-        se integrará en la blockchain y así obtendremos una dirección única.
-        Importante aclarar que la interacción mediante el contrato será por
-        transacciones, por ejemplo, para consultar información del plan de
-        pensiones, se envía una transacción con esa petición. O para suscribirse
-        al plan, se enviaría una transacción ejecutando la función de adhesión
-        del contrato.
-      </p>
     </>
   );
 }

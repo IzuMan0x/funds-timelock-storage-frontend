@@ -6,6 +6,11 @@ import "./index.css";
 //
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <div
+      className="bg-[url('./assets/finance-background.jpg')] bg-cover h-screen w-screen flex justify-center
+    "
+    >
+      <App />
+    </div>
   </React.StrictMode>
 );
