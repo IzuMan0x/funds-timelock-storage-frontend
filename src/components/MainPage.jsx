@@ -39,6 +39,16 @@ export default function MainPage() {
     functionName: "getTimeUntilDepositWindow",
   });
 
+  const {
+    data: getTimeUntilWithdrawWindowData,
+    isError: getTimeUntilWithdrawWindowError,
+    isLoading: getTimeUntilWithdrawWindowLoading,
+  } = useContractRead({
+    address: contractAddress,
+    abi: abi,
+    functionName: "getTimeUntilWithdrawWindow",
+  });
+
   console.log(
     "current time until deposit window: ",
     getTimeUntilDepositWindowData
@@ -50,7 +60,7 @@ export default function MainPage() {
     abi: abi,
     functionName: "depositFunds",
     args: [],
-    value: parseEther("0.1"),
+    value: parseEther("0.01"),
     onSuccess(data) {
       console.log("Success", data.result);
     },
@@ -104,19 +114,29 @@ export default function MainPage() {
 
   const descriptionTimeUntilDepositWindow =
     "Time until the next deposit window is: ";
-  console.log(userBalanceData);
+  const descriptionTimeUntilWithdrawWindow =
+    "Time until the next withdraw window is: ";
+
   return (
     <>
       <h1 className="rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 px-2 py-2 flex justify-center m-2">
         {descriptionEtherDeposited}
-        {isConnected
+        {isConnected && userBalanceData
           ? formatUnits(userBalanceData, 18)
-          : "(Wallet not connected or network error)"}
+          : "(Wallet not connected, network error, or 0)"}
       </h1>
       <h1 className="rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 px-2 py-2 justify-center flex m-2">
         {descriptionTimeUntilDepositWindow}
         {isConnected
-          ? `${getTimeUntilDepositWindowData?.toString()} seconds`
+          ? `${Number(getTimeUntilDepositWindowData?.toString()) + 300} seconds`
+          : "Wallet not connected"}
+      </h1>
+      <h1 className="rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 px-2 py-2 justify-center flex m-2">
+        {descriptionTimeUntilWithdrawWindow}
+        {isConnected
+          ? `${
+              Number(getTimeUntilWithdrawWindowData?.toString()) + 300
+            } seconds`
           : "Wallet not connected"}
       </h1>
       <div className="flex justify-center">
